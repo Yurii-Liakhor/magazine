@@ -5,14 +5,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping
 public class SecurityController {
-    @GetMapping(name = "login")
-    public void login() {
-
-    }
-
-    @GetMapping(name = "registration")
-    public void registration() {
-
-    }
+//    @GetMapping(name = "/login")
+//    public void login() {
+//
+//    }
+//
+//    @GetMapping(name = "/registration")
+//    public void registration() {
+//
+//    }
 }

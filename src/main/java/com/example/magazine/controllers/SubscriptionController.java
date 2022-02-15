@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("subscription")
 public class SubscriptionController {
-    @GetMapping("subscribe")
-    public void subscribe() {
-
-    }
-
-    @GetMapping("unsubscribe")
-    public void unsubscribe() {
-
-    }
+//    @GetMapping("subscribe")
+//    public void subscribe() {
+//
+//    }
+//
+//    @GetMapping("unsubscribe")
+//    public void unsubscribe() {
+//
+//    }
 }
