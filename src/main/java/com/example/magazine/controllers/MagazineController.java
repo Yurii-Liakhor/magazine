@@ -14,12 +14,6 @@ import org.springframework.web.bind.annotation.*;
 public class MagazineController {
     private final MagazineRepository magazineRepository;
 
-    @GetMapping("/hello")
-    public String hello() {
-        log.info("hello");
-        return "hello";
-    }
-
     @PostMapping("/add")
     public void addMagazine(@RequestBody MagazineDto dto) {
         log.info("addMagazine");
