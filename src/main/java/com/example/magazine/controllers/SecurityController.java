@@ -3,7 +3,10 @@ package com.example.magazine.controllers;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.security.Principal;
 
 @Slf4j
 @RestController
@@ -16,15 +19,21 @@ public class SecurityController {
         return "hello";
     }
 
-    @GetMapping("/auth")
-    public String auth() {
-        log.info("auth");
-        return "auth";
+    @GetMapping( "/userLogin")
+    @ResponseBody
+    public String currentUserLogin(Principal principal) {
+        return principal.getName();
     }
 
-    @GetMapping("/login")
-    public String login() {
-        log.info("login");
-        return "login";
-    }
+//    @GetMapping("/auth")
+//    public String auth() {
+//        log.info("auth");
+//        return "auth";
+//    }
+
+//    @GetMapping("/login")
+//    public String login() {
+//        log.info("login");
+//        return "login";
+//    }
 }

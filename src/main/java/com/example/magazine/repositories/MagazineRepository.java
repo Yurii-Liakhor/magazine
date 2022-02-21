@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 @Transactional
 public interface MagazineRepository extends CrudRepository<Magazine, Long> {
-    List<Magazine> findMagazineById(Long id);
+    Magazine findMagazineById(Long id);
     Long removeMagazineById(Long id);
 }
