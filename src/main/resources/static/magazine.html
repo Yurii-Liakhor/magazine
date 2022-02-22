@@ -1,0 +1,74 @@
+<html>
+<head></head>
+<body>
+<h1>Magazine</h1>
+<button onclick="history.back()">Go Back</button>
+<div>Add magazine</div>
+<form action="/magazine/add" method='POST'>
+    <table>
+        <tr>
+            <td>Title:</td>
+            <td><input type='text' name='title' value=''></td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td><input type='text' name='description' value=''></td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td><input type='text' name='price' /></td>
+        </tr>
+        <tr>
+            <td><input name="submit" type="submit" value="submit" /></td>
+        </tr>
+    </table>
+</form>
+
+<div>Delete magazine</div>
+<form action="/magazine/delete" method='POST'>
+    <p>
+        ID:
+        <input type='text' name='id' value=''>
+        <input name="submit" type="submit" value="submit" />
+    </p>
+</form>
+
+<script>
+
+    var xhr = new XMLHttpRequest()
+    xhr.open(
+        'GET',
+        './magazine/all',
+        true
+    )
+    xhr.send()
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState !== 4) {
+            return
+        }
+
+        if (xhr.status === 200) {
+            console.log('result', xhr.responseText)
+
+            let resp = JSON.parse(xhr.responseText)
+            let magazines = resp.data.magazines;
+            for(let m in magazines) {
+                let div = document.createElement('div');
+                div.id = magazines[m].id
+                div.innerHTML =
+                    "id:          " + magazines[m].id + "</br>" +
+                    "title:       " + magazines[m].title + "</br>" +
+                    "description: " + magazines[m].description + "</br>" +
+                    "price:       " + magazines[m].price + "</br>" +
+                    `<hr style="width:50%;text-align:left;margin-left:0">`
+
+                document.body.appendChild(div);
+            }
+        } else {
+            console.log('err', xhr.responseText)
+        }
+    }
+</script>
+</body>
+</html>

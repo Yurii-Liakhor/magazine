@@ -1,0 +1,92 @@
+<html>
+<head></head>
+<body>
+<button onclick="history.back()">Go Back</button>
+<h1>Subscription</h1>
+<div>
+
+</div>
+
+
+<script>
+    var xhr = new XMLHttpRequest()
+    xhr.open(
+        'GET',
+        './magazine/all',
+        true
+    )
+    xhr.send()
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState !== 4) {
+            return
+        }
+        if (xhr.status === 200) {
+            console.log('mag result', xhr.responseText)
+            let resp = JSON.parse(xhr.responseText)
+
+            xhr.open(
+                'GET',
+                './subscription/all',
+                true
+            )
+            xhr.send()
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState !== 4) {
+                    return
+                }
+                if (xhr.status === 200) {
+                    console.log('sub result', xhr.responseText)
+                    let userResp = JSON.parse(xhr.responseText)
+                    let userMagazines = userResp.data.magazines;
+
+                    let magazines = resp.data.magazines;
+                    for (let m in magazines) {
+                        let isSubscribed = false
+                        for (let mm in userMagazines) {
+                            console.log(magazines[m].id)
+                            console.log(userMagazines[mm].id)
+                            if(magazines[m].id === userMagazines[mm].id) {
+                                isSubscribed = true
+                                break
+                            }
+                        }
+
+                        let div = document.createElement('div');
+                        div.id = magazines[m].id
+                        // let subUrl = "subscription/subscribe/" + magazines[m].id;
+                        // let unsubUrl = "subscription/unsubscribe/" + magazines[m].id
+                        let sub = isSubscribed ?
+                            `<a href="./subscription/unsubscribe/" onclick="location.href=this.href+'?id='+magazines[m].id;return false;">Unsubscribe</a>` :
+                            `<a href="./subscription/subscribe/" onclick="location.href=this.href+'?id='+magazines[m].id;return false;">Subscribe</a>`
+                        div.innerHTML =
+                            "id:          " + magazines[m].id + "</br>" +
+                            "title:       " + magazines[m].title + "</br>" +
+                            "description: " + magazines[m].description + "</br>" +
+                            "price:       " + magazines[m].price + "</br>"
+                            // sub +
+                            // `<hr style="width:300px%;text-align:left;margin-left:0">`
+
+                        document.body.appendChild(div);
+
+                        if(isSubscribed) {
+                            let new_div = document.createElement("div");
+                            new_div.innerHTML = "<a href='./subscription/unsubscribe/'>Unsubscribe</a>"
+                            let link_div = document.getElementById(magazines[m].id)
+                            document.body.insertBefore(new_div, link_div.nextSibling);
+                            // document.write('<a href="' + "/subscription/subscribe/" + magazines[m].id + '">Subscribe</a>');
+                        } else {
+                            let new_div = document.createElement("div");
+                            new_div.innerHTML = "<a href='./subscription/subscribe/'>Unsubscribe</a>"
+                            let link_div = document.getElementById(magazines[m].id)
+                            document.body.insertBefore(new_div, link_div.nextSibling);
+                        }
+                    }
+                }
+            }
+        } else {
+            console.log('err', xhr.responseText)
+        }
+    }
+</script>
+</body>
+</html>

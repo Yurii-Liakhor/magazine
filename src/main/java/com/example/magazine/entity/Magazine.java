@@ -1,5 +1,6 @@
 package com.example.magazine.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class Magazine {
     @Column
     private Double price;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "magazines")
     private List<User> users;
 }

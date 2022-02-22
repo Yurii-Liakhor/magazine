@@ -13,5 +13,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
     List<User> findUserById(Long id);
     Long removeUserById(Long id);
     User findUserByLogin(String login);
+
+    boolean existsUserByLogin(String login);
     //todo add user
 }

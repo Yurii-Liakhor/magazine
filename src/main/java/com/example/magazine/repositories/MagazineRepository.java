@@ -12,4 +12,5 @@ import java.util.List;
 public interface MagazineRepository extends CrudRepository<Magazine, Long> {
     Magazine findMagazineById(Long id);
     Long removeMagazineById(Long id);
+    List<Magazine> findAll();
 }
