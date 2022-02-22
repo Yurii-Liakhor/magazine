@@ -53,12 +53,13 @@
 
                         let div = document.createElement('div');
                         div.id = magazines[m].id
-                        // let subUrl = "subscription/subscribe/" + magazines[m].id;
-                        // let unsubUrl = "subscription/unsubscribe/" + magazines[m].id
+                        let subUrl = "subscription/subscribe/" + magazines[m].id;
+                        let unsubUrl = "subscription/unsubscribe/" + magazines[m].id
                         let sub = isSubscribed ?
                             `<a href="./subscription/unsubscribe/" onclick="location.href=this.href+'?id='+magazines[m].id;return false;">Unsubscribe</a>` :
                             `<a href="./subscription/subscribe/" onclick="location.href=this.href+'?id='+magazines[m].id;return false;">Subscribe</a>`
                         div.innerHTML =
+                            "</br>" +
                             "id:          " + magazines[m].id + "</br>" +
                             "title:       " + magazines[m].title + "</br>" +
                             "description: " + magazines[m].description + "</br>" +
@@ -70,15 +71,24 @@
 
                         if(isSubscribed) {
                             let new_div = document.createElement("div");
-                            new_div.innerHTML = "<a href='./subscription/unsubscribe/'>Unsubscribe</a>"
+                            new_div.id = "link_" + magazines[m].id
+                            new_div.innerHTML = '<a href="' + unsubUrl + '">Unsubscribe</a>'
                             let link_div = document.getElementById(magazines[m].id)
                             document.body.insertBefore(new_div, link_div.nextSibling);
-                            // document.write('<a href="' + "/subscription/subscribe/" + magazines[m].id + '">Subscribe</a>');
+
+                            // let sep = document.createElement("div");
+                            // sep.innerHTML = `<hr style="width:300px%;text-align:left;margin-left:0">`
+                            // document.body.insertBefore(link_div, sep.nextSibling);
                         } else {
                             let new_div = document.createElement("div");
-                            new_div.innerHTML = "<a href='./subscription/subscribe/'>Unsubscribe</a>"
+                            new_div.id = "link_" + magazines[m].id
+                            new_div.innerHTML = '<a href="' + subUrl + '">Subscribe</a>'
                             let link_div = document.getElementById(magazines[m].id)
                             document.body.insertBefore(new_div, link_div.nextSibling);
+
+                            // let sep = document.createElement("div");
+                            // sep.innerHTML = `<hr style="width:300px%;text-align:left;margin-left:0">`
+                            // document.body.insertBefore(link_div, sep.nextSibling);
                         }
                     }
                 }

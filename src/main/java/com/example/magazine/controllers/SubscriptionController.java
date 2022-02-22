@@ -55,7 +55,7 @@ public class SubscriptionController {
         Magazine magazine = magazineRepository.findMagazineById(id);
         user.addMagazine(magazine);
         userRepository.save(user);
-        return "redirect:../subscription.html";
+        return "redirect:http://localhost:8099/subscription.html";
     }
 
     @GetMapping("/unsubscribe/{id}")
@@ -65,7 +65,7 @@ public class SubscriptionController {
         Magazine magazine = magazineRepository.findMagazineById(id);
         user.removeMagazine(magazine);
         userRepository.save(user);
-        return "redirect:../subscription.html";
+        return "redirect:http://localhost:8099/subscription.html";
     }
 
 //    @GetMapping("/subscribe/{id}")
