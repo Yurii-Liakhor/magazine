@@ -33,11 +33,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("magazine.html", "/magazine/add", "/magazine/delete").hasRole("ADMIN")
-                .antMatchers("subscription.html", "/subscription/**", "/magazine/all").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/magazine.html", "/magazine/add", "/magazine/delete").hasRole("ADMIN")
+                .antMatchers("/subscription.html", "/subscription/**", "/magazine/all").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/hello", "/registration", "/register").permitAll()
                 .and()
                 .formLogin()
+                .defaultSuccessUrl("/index.html", true)
+                .and()
+                .exceptionHandling().accessDeniedPage("/accessDenied.jsp")
                 .and()
                 .logout();
     }

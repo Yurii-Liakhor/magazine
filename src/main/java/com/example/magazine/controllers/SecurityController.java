@@ -49,7 +49,7 @@ public class SecurityController {
             return "redirect:registration.html";
         }
         userRepository.save(user);
-        return "redirect:index.html";
+        return "redirect:login";
     }
 
 //    @GetMapping("/auth")
