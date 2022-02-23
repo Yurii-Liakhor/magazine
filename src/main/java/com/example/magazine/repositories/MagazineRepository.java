@@ -1,7 +1,6 @@
 package com.example.magazine.repositories;
 
 import com.example.magazine.entity.Magazine;
-import com.example.magazine.entity.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,6 @@
 package com.example.magazine.controllers;
 
-import com.example.magazine.dto.MagazineDto;
 import com.example.magazine.entity.Magazine;
-import com.example.magazine.entity.User;
 import com.example.magazine.mapper.MagazineMapper;
 import com.example.magazine.model.Data;
 import com.example.magazine.model.Response;
@@ -10,9 +8,11 @@ import com.example.magazine.model.Status;
 import com.example.magazine.repositories.MagazineRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;

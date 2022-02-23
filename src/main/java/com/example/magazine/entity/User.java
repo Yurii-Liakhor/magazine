@@ -1,7 +1,6 @@
 package com.example.magazine.entity;
 
 import lombok.Data;
-import lombok.Singular;
 
 import javax.persistence.*;
 import java.util.Set;
